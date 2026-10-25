@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.woff2 binary
+# Preserve the original upstream font license text, including its whitespace.
+public/assets/fonts/*-OFL.txt whitespace=-blank-at-eol

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><radialGradient id="glow"><stop stop-color="#15364a"/><stop offset="1" stop-color="#070d19"/></radialGradient><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0v50" fill="none" stroke="#94a3b8" stroke-opacity=".06"/></pattern></defs>
+<rect width="1200" height="630" fill="#070d19"/><rect x="600" width="600" height="630" fill="url(#glow)"/><rect width="1200" height="630" fill="url(#grid)"/>
+<rect x="72" y="64" width="48" height="48" rx="6" stroke="#22d3ee" stroke-opacity=".5" fill="#101c2e"/><text x="85" y="99" fill="#22d3ee" font-family="Arial,sans-serif" font-weight="700" font-size="35">r.</text>
+<text x="140" y="96" fill="#c1d1e2" font-family="Arial,sans-serif" font-size="22">ranger.dev</text>
+<rect x="72" y="165" width="274" height="34" rx="5" fill="#12302e" stroke="#3e786a"/><circle cx="89" cy="182" r="4" fill="#5ee5b3"/><text x="104" y="187" fill="#b0d6cf" font-family="monospace" font-size="13">Open to OJT opportunities</text>
+<text x="68" y="295" fill="#f1f5f9" font-family="Arial,sans-serif" font-weight="700" font-size="70" letter-spacing="-3">Ranger Aganon</text><text x="68" y="373" fill="#c3cddd" font-family="Arial,sans-serif" font-weight="700" font-size="70" letter-spacing="-3">F. Wagayen<tspan fill="#22d3ee">.</tspan></text>
+<text x="72" y="426" fill="#a7bbd1" font-family="Arial,sans-serif" font-size="20">Fourth-Year IT Student | Computer Security Major</text>
+<text x="72" y="486" fill="#22d3ee" font-family="Arial,sans-serif" font-size="27">Building with purpose. Thinking security.</text>
+<path d="M72 545h1056" stroke="#94a3b8" stroke-opacity=".2"/><text x="72" y="581" fill="#7f96b0" font-family="monospace" font-size="14">PHINMA Araullo University</text><text x="1128" y="581" text-anchor="end" fill="#7f96b0" font-family="monospace" font-size="14">rangerdgreate.github.io</text>
+<g stroke="#22d3ee" fill="none"><circle cx="969" cy="297" r="140" stroke-opacity=".15"/><circle cx="969" cy="297" r="105" stroke-opacity=".2" stroke-dasharray="4 8"/><path d="m969 233 52 23v42c0 36-23 58-52 70-29-12-52-34-52-70v-42z" fill="#123047" stroke-opacity=".6"/><path d="m947 297 15 15 30-32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="829" cy="297" r="4" fill="#22d3ee"/><circle cx="1109" cy="297" r="4" fill="#22d3ee"/></g>
+</svg>
