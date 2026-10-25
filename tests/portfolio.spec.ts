@@ -22,7 +22,7 @@ test('all sections and links render with accurate project and resume behavior', 
   await expect(page.getByRole('link', { name: /Verify Credential/ })).toHaveCount(3)
   await expect(
     page.locator(
-      'a[href*="WebGuard-Capstone"], a[href*="/cyberscan"], a[href*="/it-business-solutions"]',
+      'a[href*="github.com/rangerdgreate/WebGuard-Capstone"], a[href*="github.com/rangerdgreate/cyberscan"], a[href*="github.com/rangerdgreate/it-business-solutions"]',
     ),
   ).toHaveCount(0)
   const resume = 'public/resume/Ranger_Aganon_F_Wagayen_Resume.pdf'

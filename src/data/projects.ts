@@ -1,3 +1,5 @@
+import { cyberscanDemoUrl } from './liveDemos'
+
 export type Project = {
   id: string
   name: string
@@ -10,12 +12,14 @@ export type Project = {
   note: string
   visibility: 'Private' | 'Public'
   repository?: string
+  liveUrl?: string
   training?: boolean
 }
 
 export const projects: Project[] = [
   {
     id: 'cyberscan',
+    liveUrl: cyberscanDemoUrl,
     name: 'CyberScan',
     fullName: 'CyberScan — Web Vulnerability Assessment Platform',
     category: 'Security assessment',
