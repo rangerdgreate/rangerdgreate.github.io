@@ -71,6 +71,12 @@ package-lock.json             Reproducible dependency resolution
 
 ## Edit content
 
+### Portrait hero
+
+The hero uses the supplied professional photo at `public/assets/ranger-portrait.png`, preserved unchanged. Responsive WebP copies retain its composition and proportions. After replacing the original with an approved photograph, run `node scripts/optimize-portrait.mjs` to regenerate those copies; update the width, height, aspect ratio, and responsive filenames if the new image dimensions differ.
+
+`src/components/Portrait.tsx` renders the image, `src/styles/portrait.css` controls the cinematic entrance and framing, and `src/hooks/usePortraitMotion.ts` adds restrained desktop pointer and scroll motion. Animation uses native CSS and one on-demand animation frame loop, without an additional runtime animation dependency. Tilt and parallax are disabled on small screens, touch pointers, and reduced-motion preferences; reduced motion also removes entrance effects. The existing sections and interactions are unchanged.
+
 - Change personal information, the email address, interests, skills, and career objective in `src/data/profile.ts`.
 - About text and other section-specific copy live in `src/sections/`.
 - Update page titles, descriptions, canonical URL, and Open Graph tags in `index.html` if the identity or public URL changes. Update `public/robots.txt` and `public/sitemap.xml` when changing the domain.
@@ -168,7 +174,7 @@ macOS / Linux:
 PLAYWRIGHT_CHANNEL=chromium npm test
 ```
 
-The five test groups cover rendered content and links; all four dialogs with Escape and focus restoration; mobile navigation and the active indicator; horizontal overflow at 320, 390, 768, 1024, and 1440 pixels; automated WCAG A/AA checks for desktop, mobile, and an open dialog; reduced motion; and print visibility. Automated accessibility checks complement manual review and do not establish full WCAG conformance.
+The seven test groups cover rendered content and links; all four dialogs with Escape and focus restoration; mobile navigation and the active indicator; horizontal overflow at 320, 390, 768, 1024, and 1440 pixels; automated WCAG A/AA checks for desktop, mobile, and an open dialog; reduced motion; print visibility; portrait image loading and proportions; the completed cinematic entrance; desktop pointer and scroll motion; and disabling portrait motion on mobile. Automated accessibility checks complement manual review and do not establish full WCAG conformance.
 
 With the preview running, `npm run capture` saves full-page desktop/mobile screenshots under ignored `artifacts/` and regenerates `public/assets/social-preview.png` from the SVG. Update the SVG first when changing the sharing artwork. `node scripts/vendor-fonts.mjs` refreshes the chosen fonts and original licenses; it is not needed for normal development or deployment.
 

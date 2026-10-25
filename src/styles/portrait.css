@@ -1,0 +1,346 @@
+/* Scoped to the portrait hero; the rest of the portfolio keeps its existing styling. */
+.hero--portrait {
+  background: radial-gradient(ellipse at 80% 45%, #11304a38, transparent 57%);
+}
+.hero--portrait .hero-layout {
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(36px, 5vw, 85px);
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+.hero--portrait .hero-grid-background {
+  animation: hero-background-enter 1.6s ease both;
+}
+.hero--portrait .hero-hello {
+  font: 500 21px/1.5 var(--display);
+  letter-spacing: -0.5px;
+  text-transform: none;
+  color: #a6bdce;
+  margin: 25px 0 12px;
+}
+.hero--portrait h1 {
+  font-size: clamp(44px, 4.6vw, 65px);
+  line-height: 1.15;
+}
+.hero--portrait h1 .hero-name-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  color: #c3cddd;
+}
+.hero--portrait h1 .hero-name-line:first-child {
+  color: var(--text);
+}
+.hero-name-reveal {
+  display: block;
+  animation: hero-name-enter 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+.hero-name-line:nth-child(2) .hero-name-reveal {
+  animation-delay: 0.24s;
+}
+.hero--portrait .hero-headline {
+  font-size: 12px;
+}
+.hero--portrait .hero-description {
+  max-width: 480px;
+}
+.hero--portrait
+  .hero-copy
+  > :is(
+    .availability,
+    .hero-hello,
+    .hero-headline,
+    .hero-mantra,
+    .hero-description,
+    .hero-buttons,
+    .hero-social
+  ) {
+  animation: hero-content-enter 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero--portrait .hero-copy > .availability {
+  animation-delay: 0.05s;
+}
+.hero--portrait .hero-copy > .hero-hello {
+  animation-delay: 0.15s;
+}
+.hero--portrait .hero-copy > .hero-headline {
+  animation-delay: 0.42s;
+}
+.hero--portrait .hero-copy > .hero-mantra {
+  animation-delay: 0.5s;
+}
+.hero--portrait .hero-copy > .hero-description {
+  animation-delay: 0.6s;
+}
+.hero--portrait .hero-copy > .hero-buttons {
+  animation-delay: 0.72s;
+}
+.hero--portrait .hero-copy > .hero-social {
+  animation-delay: 0.82s;
+}
+.hero--portrait .hero-copy > :focus-within {
+  animation: none;
+}
+
+.portrait-composition {
+  --portrait-rotate-x: 0deg;
+  --portrait-rotate-y: 0deg;
+  --portrait-scroll: 0px;
+  --portrait-light-x: 50%;
+  --portrait-light-y: 50%;
+  width: min(100%, 430px);
+  margin: 0 0 0 auto;
+  position: relative;
+  isolation: isolate;
+  padding: 24px 0 0;
+}
+.portrait-ambient {
+  position: absolute;
+  z-index: -1;
+  inset: 5% -17% 0;
+  background: radial-gradient(ellipse at 70% 45%, #22d3ee25, #1d5b8b12 45%, transparent 72%);
+  filter: blur(28px);
+  animation: portrait-light-enter 1.8s ease 0.55s both;
+  pointer-events: none;
+}
+.portrait-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font: 400 8px/1.5 var(--mono);
+  color: #7d9db3;
+  letter-spacing: 2px;
+  animation: hero-content-enter 1s ease 0.85s both;
+}
+.portrait-parallax {
+  transform: translate3d(0, var(--portrait-scroll), 0);
+}
+.portrait-tilt {
+  position: relative;
+  border-radius: 12px;
+  transform: perspective(1200px) rotateX(var(--portrait-rotate-x)) rotateY(var(--portrait-rotate-y));
+  box-shadow:
+    0 24px 70px #0005,
+    0 0 0 1px #a2c8dc29;
+  background: #101c2e;
+}
+.portrait-reveal {
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 0;
+  clip-path: inset(0 0 100% 0 round 12px);
+}
+.portrait-composition[data-loaded='true'] .portrait-reveal {
+  animation: portrait-mask-enter 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.portrait-picture {
+  display: block;
+  aspect-ratio: 1122 / 1402;
+  overflow: hidden;
+}
+.portrait-picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1122 / 1402;
+  object-fit: contain;
+}
+.portrait-composition[data-loaded='true'] img {
+  animation: portrait-image-enter 1.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.portrait-frame-light {
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: 13px;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at var(--portrait-light-x) var(--portrait-light-y),
+    #9aeefaaa,
+    #22d3ee22 45%,
+    transparent 75%
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.45;
+  transition: opacity 0.5s ease;
+}
+.portrait-composition:hover .portrait-frame-light {
+  opacity: 0.85;
+}
+.portrait-caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  min-height: 20px;
+  font: 400 8px/1.8 var(--mono);
+  letter-spacing: 1.1px;
+  color: #90a8bd;
+  animation: hero-content-enter 1s ease 1s both;
+}
+.portrait-caption-rule {
+  display: block;
+  width: 25px;
+  height: 1px;
+  background: #22d3ee80;
+}
+.portrait-caption-dot {
+  color: #3f667b;
+  margin: 0 3px;
+}
+.portrait-caption-plus {
+  margin-left: auto;
+  color: var(--cyan);
+  font-size: 19px;
+  line-height: 1;
+}
+.portrait-composition[data-motion='enabled'] :is(.portrait-parallax, .portrait-tilt) {
+  will-change: transform;
+}
+
+@keyframes hero-background-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hero-name-enter {
+  from {
+    transform: translate3d(0, 110%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes hero-content-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes portrait-mask-enter {
+  from {
+    opacity: 0.3;
+    clip-path: inset(0 0 100% 0 round 12px);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 12px);
+  }
+}
+@keyframes portrait-image-enter {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes portrait-light-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1199px) {
+  .hero--portrait .hero-layout {
+    gap: 35px;
+    padding-block: 55px;
+  }
+  .hero--portrait h1 {
+    font-size: 50px;
+  }
+  .hero--portrait .hero-headline {
+    font-size: 11px;
+  }
+}
+@media (max-width: 999px) {
+  .hero--portrait .hero-layout {
+    gap: 28px;
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+  .hero--portrait h1 {
+    font-size: clamp(35px, 4.6vw, 47px);
+    letter-spacing: -1.8px;
+  }
+  .hero--portrait .hero-hello {
+    font-size: 18px;
+  }
+  .hero--portrait .hero-headline {
+    font-size: 10px;
+  }
+  .portrait-caption {
+    font-size: 6px;
+    letter-spacing: 0.6px;
+    gap: 7px;
+  }
+  .portrait-caption-rule {
+    width: 15px;
+  }
+}
+@media (max-width: 700px) {
+  .hero--portrait .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 40px 0 32px;
+  }
+  .hero--portrait h1 {
+    font-size: clamp(39px, 8.8vw, 61px);
+    letter-spacing: -1.9px;
+  }
+  .hero--portrait .hero-hello {
+    margin-top: 24px;
+    font-size: 20px;
+  }
+  .hero--portrait .hero-headline {
+    font-size: 11px;
+  }
+  .portrait-composition {
+    width: min(calc(100% - 32px), 380px);
+    margin: 0 auto;
+  }
+  .portrait-ambient {
+    inset: 7% -8% 0;
+    filter: blur(22px);
+  }
+  .portrait-caption {
+    font-size: 7px;
+    letter-spacing: 0.8px;
+  }
+  .portrait-caption-rule {
+    width: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero--portrait *,
+  .hero--portrait *::before,
+  .hero--portrait *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .portrait-reveal {
+    opacity: 1;
+    clip-path: none;
+  }
+  .portrait-parallax,
+  .portrait-tilt,
+  .portrait-picture img,
+  .hero-name-reveal {
+    transform: none;
+  }
+}

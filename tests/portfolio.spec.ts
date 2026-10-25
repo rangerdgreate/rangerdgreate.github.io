@@ -120,11 +120,77 @@ test('reduced motion disables decorative animation and print only includes the r
 }) => {
   await page.goto('/')
   expect(
-    await page.locator('.orbital-two').evaluate((el) => getComputedStyle(el).animationName),
+    await page
+      .locator('.hero-name-reveal')
+      .first()
+      .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe('none')
+  await expect(page.locator('.portrait-reveal')).toHaveCSS('opacity', '1')
+  await expect(page.locator('.portrait-tilt')).toHaveCSS('transform', 'none')
+  await expect(page.locator('.portrait-composition')).not.toHaveAttribute('data-motion', 'enabled')
   await page.emulateMedia({ media: 'print' })
   await expect(page.locator('#resume')).toBeVisible()
   await expect(page.locator('#home')).not.toBeVisible()
   await expect(page.locator('.site-header')).not.toBeVisible()
   await expect(page.locator('.resume-print-contact')).toBeVisible()
+})
+
+test('portrait loads at its original proportions and settles after the cinematic entrance', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('/')
+  const photo = page.getByRole('img', { name: /Professional portrait of Ranger Aganon F. Wagayen/ })
+  await expect(photo).toBeVisible()
+  await expect(photo).toHaveAttribute('width', '1122')
+  await expect(photo).toHaveAttribute('height', '1402')
+  await expect(photo).toHaveJSProperty('complete', true)
+  expect(await photo.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0)
+  expect(await photo.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(
+    /ranger-portrait-(640|1122)\.webp$/,
+  )
+  await expect(page.locator('.portrait-reveal')).toHaveCSS('opacity', '1')
+  await expect(photo).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
+  const bounds = await photo.boundingBox()
+  expect(bounds!.width / bounds!.height).toBeCloseTo(1122 / 1402, 2)
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Ranger Aganon F. Wagayen.')
+  await expect(page.locator('.hero-hello')).toHaveText('Hi, I’m Ranger.')
+})
+
+test('portrait responds gently to desktop pointer and scroll, and disables motion on mobile', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('/')
+  const portrait = page.locator('.portrait-composition')
+  await expect(portrait).toHaveAttribute('data-motion', 'enabled')
+  const box = (await portrait.boundingBox())!
+  await page.mouse.move(box.x + box.width * 0.85, box.y + box.height * 0.3)
+  await expect
+    .poll(async () =>
+      portrait.evaluate((el) => parseFloat(el.style.getPropertyValue('--portrait-rotate-y'))),
+    )
+    .toBeGreaterThan(1)
+  await page.mouse.move(10, 100)
+  await expect
+    .poll(async () =>
+      portrait.evaluate((el) =>
+        Math.abs(parseFloat(el.style.getPropertyValue('--portrait-rotate-y'))),
+      ),
+    )
+    .toBeLessThan(0.1)
+  await page.evaluate(() => window.scrollTo({ top: 350, behavior: 'instant' }))
+  await expect
+    .poll(async () =>
+      portrait.evaluate((el) => parseFloat(el.style.getPropertyValue('--portrait-scroll'))),
+    )
+    .toBeGreaterThan(0)
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(portrait).not.toHaveAttribute('data-motion', 'enabled')
+  expect(await portrait.evaluate((el) => el.style.getPropertyValue('--portrait-scroll'))).toBe('')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await expect(page.locator('.portrait-tilt')).toHaveCSS('transform', 'none')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
 })

@@ -1,26 +1,34 @@
 import { ArrowDown, ArrowDownToLine, ArrowRight, Github, Mail } from 'lucide-react'
 import { profile, interests } from '../data/profile'
-import { TerminalIllustration } from '../components/TerminalIllustration'
+import { Portrait } from '../components/Portrait'
+import '../styles/portrait.css'
 
 export function Hero() {
   return (
-    <section id="home" className="hero section-anchor" aria-labelledby="hero-heading">
+    <section
+      id="home"
+      className="hero hero--portrait section-anchor"
+      aria-labelledby="hero-heading"
+    >
       <div className="hero-grid-background" aria-hidden="true" />
       <div className="container hero-layout">
         <div className="hero-copy">
           <a className="availability" href="#contact">
-            <span className="status-dot" /> Open to OJT opportunities <ArrowUpRightSmall />
+            <span className="status-dot" /> Open to OJT Opportunities <ArrowUpRightSmall />
           </a>
-          <p className="hero-hello">HELLO WORLD, I’M</p>
+          <p className="hero-hello">Hi, I’m Ranger.</p>
           <h1 id="hero-heading">
-            Ranger Aganon
-            <br />{' '}
-            <span>
-              F. Wagayen<span className="name-dot">.</span>
+            <span className="hero-name-line">
+              <span className="hero-name-reveal">Ranger Aganon</span>
+            </span>{' '}
+            <span className="hero-name-line">
+              <span className="hero-name-reveal">
+                F. Wagayen<span className="name-dot">.</span>
+              </span>
             </span>
           </h1>
           <p className="hero-headline">
-            Fourth-Year IT Student <span>|</span> Computer Security Major
+            IT Student <span>|</span> Computer Security Major
           </p>
           <p className="hero-mantra">
             Building with purpose.
@@ -58,7 +66,7 @@ export function Hero() {
             <span>Curious mind. Practical solutions.</span>
           </div>
         </div>
-        <TerminalIllustration />
+        <Portrait />
       </div>
       <div className="container hero-footer">
         <div className="interest-list">
