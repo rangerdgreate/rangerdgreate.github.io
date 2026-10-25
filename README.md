@@ -6,7 +6,7 @@ A complete React, TypeScript, and Vite portfolio for **Ranger Aganon F. Wagayen*
 
 **Intended public address:** https://rangerdgreate.github.io/
 
-**Deployment status:** prepared locally; not published or verified live. GitHub authentication is required. The GitHub connection was not installed, and an anonymous check of the target repository required authentication. That does not establish whether the repository is private or has not been created.
+**Deployment status:** GitHub Pages publishes `main` using the existing workflow. Check [GitHub Actions](https://github.com/rangerdgreate/rangerdgreate.github.io/actions) for the current deployment result.
 
 The local Git repository uses `main`, with `origin` configured for the intended portfolio repository. The implementation is committed locally; authenticate and push when ready.
 
@@ -232,3 +232,9 @@ If the remote already contains commits, fetch and review that history before int
 ## Content boundaries
 
 CyberScan is a solo AI-assisted project for authorized assessments, with findings requiring validation. Shopora is a solo demonstration with simulated electronic payments. WebGuard is a group capstone where Ranger served as Project Manager. Stellar / Soroban is a guided seminar activity; its frontend and smart contract examples are not claimed to be one verified integrated application. The three private project repositories are not linked or included. No employment history, GPA, graduation date, phone number, LinkedIn profile, production deployment, or unsupported security accomplishment has been invented.
+
+---
+
+Original repository README (preserved from the initial remote commit):
+
+# rangerdgreate.github.io
