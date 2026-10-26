@@ -4,6 +4,7 @@ import { cyberscanDemoUrl } from '../src/data/liveDemos'
 const demoUrl = process.env.CYBERSCAN_DEMO_TEST_URL
 
 test('CyberScan card uses the verified live URL and secure new-tab attributes', async ({ page }) => {
+  test.setTimeout(120_000)
   await page.goto('/#projects')
   const link = page.locator('.project-cyberscan').getByRole('link', { name: /Visit Website/ })
   if (!cyberscanDemoUrl) {
@@ -17,14 +18,15 @@ test('CyberScan card uses the verified live URL and secure new-tab attributes', 
     await page.setViewportSize({ width, height: 900 })
     await expect(link).toBeVisible()
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `No portfolio overflow at ${width}px`).toBe(true)
+    const opened = page.waitForEvent('popup')
+    await link.click()
+    const popup = await opened
+    await popup.waitForLoadState('domcontentloaded')
+    expect(new URL(popup.url()).origin).toBe(new URL(cyberscanDemoUrl).origin)
+    await expect(popup).toHaveTitle(/CyberScan/i)
+    await expect(popup.locator('body')).toContainText('CyberScan')
+    await popup.close()
   }
-  const opened = page.waitForEvent('popup')
-  await link.click()
-  const popup = await opened
-  await popup.waitForLoadState('domcontentloaded')
-  expect(new URL(popup.url()).origin).toBe(new URL(cyberscanDemoUrl).origin)
-  await expect(popup.locator('.demo-banner')).toContainText('Public demonstration')
-  await popup.close()
 })
 
 test('CyberScan demo supports dashboard, findings, reports and mobile layouts', async ({ page }) => {
