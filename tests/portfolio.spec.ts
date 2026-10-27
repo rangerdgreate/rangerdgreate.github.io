@@ -2,6 +2,22 @@ import { expect, test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { existsSync, readFileSync } from 'node:fs'
 
+test('Shopora card and overview link safely to the verified public demo', async ({ page }) => {
+  await page.goto('/#projects')
+  const card = page.locator('.project-shopora')
+  const link = card.getByRole('link', { name: /Visit Website/ })
+  await expect(link).toHaveAttribute('href', 'https://resonant-fudge-df3c7e.netlify.app/')
+  await expect(link).toHaveAttribute('target', '_blank')
+  await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+  await expect(card).toContainText('Private repository')
+  await expect(page.locator('.project-card').getByRole('link', { name: /Visit Website/ })).toHaveCount(1)
+  await card.getByRole('button', { name: /Project overview/ }).click()
+  const dialog = page.getByRole('dialog')
+  await expect(dialog.getByRole('link', { name: /Visit Website/ })).toHaveAttribute('href', 'https://resonant-fudge-df3c7e.netlify.app/')
+  await expect(dialog).toContainText('frontend-only portfolio demo')
+  await expect(dialog).toContainText('No real accounts, payments, deliveries, email, or GPS operations')
+})
+
 test('all sections and links render with accurate project and resume behavior', async ({
   page,
 }) => {

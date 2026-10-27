@@ -76,6 +76,17 @@ export function ProjectDialog({
             ))}
           </div>
           <p className="project-note">{project.note}</p>
+          {project.website && (
+            <a
+              className="button button-primary"
+              href={project.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Website <ArrowUpRight size={17} />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          )}
           {project.repository ? (
             <a
               className="button button-primary"

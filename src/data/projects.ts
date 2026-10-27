@@ -10,6 +10,7 @@ export type Project = {
   note: string
   visibility: 'Private' | 'Public'
   repository?: string
+  website?: string
   training?: boolean
 }
 
@@ -73,8 +74,9 @@ export const projects: Project[] = [
       'CSRF protection, validation, and rate limiting',
       'A web application and a separate Android customer application sharing a backend',
     ],
-    note: 'A demonstration project developed with AI-assisted workflows. Electronic payments are simulated. No commercial deployment, live payment gateway, or production Android release is claimed.',
+    note: 'A demonstration project developed with AI-assisted workflows. Electronic payments are simulated. The public website is a frontend-only portfolio demo with fictional products, a guest bag, and simulated checkout. No real accounts, payments, deliveries, email, or GPS operations are available. Full-stack source and operational tools remain private; no production Android release is claimed.',
     visibility: 'Private',
+    website: 'https://resonant-fudge-df3c7e.netlify.app/',
   },
   {
     id: 'webguard',
