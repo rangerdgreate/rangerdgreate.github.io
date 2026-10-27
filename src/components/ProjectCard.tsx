@@ -78,10 +78,10 @@ export function ProjectCard({
             Project overview <ArrowUpRight size={17} />
             <span className="sr-only">: {project.name}</span>
           </button>
-          {project.website && (
-            <a href={project.website} target="_blank" rel="noopener noreferrer">
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
               Visit Website <ArrowUpRight size={17} />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only">: {project.name} (opens in a new tab)</span>
             </a>
           )}
           {project.repository && (

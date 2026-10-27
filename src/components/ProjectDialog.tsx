@@ -76,10 +76,10 @@ export function ProjectDialog({
             ))}
           </div>
           <p className="project-note">{project.note}</p>
-          {project.website && (
+          {project.id === 'shopora' && project.liveUrl && (
             <a
               className="button button-primary"
-              href={project.website}
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
             >

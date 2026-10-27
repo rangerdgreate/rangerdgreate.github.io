@@ -1,3 +1,5 @@
+import { cyberscanDemoUrl } from './liveDemos'
+
 export type Project = {
   id: string
   name: string
@@ -10,13 +12,14 @@ export type Project = {
   note: string
   visibility: 'Private' | 'Public'
   repository?: string
-  website?: string
+  liveUrl?: string
   training?: boolean
 }
 
 export const projects: Project[] = [
   {
     id: 'cyberscan',
+    liveUrl: cyberscanDemoUrl,
     name: 'CyberScan',
     fullName: 'CyberScan — Web Vulnerability Assessment Platform',
     category: 'Security assessment',
@@ -76,7 +79,7 @@ export const projects: Project[] = [
     ],
     note: 'A demonstration project developed with AI-assisted workflows. Electronic payments are simulated. The public website is a frontend-only portfolio demo with fictional products, a guest bag, and simulated checkout. No real accounts, payments, deliveries, email, or GPS operations are available. Full-stack source and operational tools remain private; no production Android release is claimed.',
     visibility: 'Private',
-    website: 'https://resonant-fudge-df3c7e.netlify.app/',
+    liveUrl: 'https://resonant-fudge-df3c7e.netlify.app/',
   },
   {
     id: 'webguard',
